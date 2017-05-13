@@ -43,26 +43,26 @@ public class PadreServiceImpl implements PadreService {
 	}*/
 
     @Override
-    public Padre insertaPadre(Padre padre) {
+    public Alumno insertaAlumno(Alumno alumno) {
         System.out.println(">> kSession: " + kSession);
         printKieSessionAllFacts(kSession);
-        System.out.println(">> Padre: " + padre);
-        kSession.insert(padre);
+        System.out.println(">> Alumno: " + alumno);
+        kSession.insert(alumno);
         int fired = kSession.fireAllRules();
         System.out.println(">> Fired: " + fired);
-        return padre;
+        return alumno;
     }
 
 
     @Override
-    public List<Padre> getPadres() {
-        List<Padre> padres = new ArrayList<Padre>();
+    public List<Alumno> getAlumnos() {
+        List<Alumno> alumnos = new ArrayList<Alumno>();
         for (Object o : kSession.getObjects()) {
-            if (o instanceof Padre) {
-                padres.add((Padre) o);
+            if (o instanceof Alumno) {
+                alumnos.add((Alumno) o);
             }
         }
-        return padres;
+        return alumnos;
     }
 
     @Override

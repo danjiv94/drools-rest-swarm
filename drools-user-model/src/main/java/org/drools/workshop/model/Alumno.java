@@ -21,7 +21,7 @@ public class Alumno {
     private String nombre;
     private String matricula;
     private String carrera;
-    private Materia materia;
+    //private Materia materia;
     private int tiempoEnSistema;
     public Alumno(){
     	
@@ -45,12 +45,12 @@ public class Alumno {
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
 	}
-	public Materia getMateria() {
-		return materia;
-	}
-	public void setMateria(Materia materia) {
-		this.materia = materia;
-	}
+	//public Materia getMateria() {
+	//	return materia;
+	//}
+	//public void setMateria(Materia materia) {
+	//	this.materia = materia;
+	//}
 	public int getTiempoEnSistema() {
 		return tiempoEnSistema;
 	}
@@ -62,12 +62,12 @@ public class Alumno {
 		return "Alumno [nombre=" + nombre + ", matricula=" + matricula + ", carrera=" + carrera + ", materia=" + materia
 				+ ", tiempoEnSistema=" + tiempoEnSistema + "]";
 	}
-	public Alumno(String nombre, String matricula, String carrera, Materia materia, int tiempoEnSistema) {
+	public Alumno(String nombre, String matricula, String carrera, int tiempoEnSistema) {
 		super();
 		this.nombre = nombre;
 		this.matricula = matricula;
 		this.carrera = carrera;
-		this.materia = materia;
+		//this.materia = materia;
 		this.tiempoEnSistema = tiempoEnSistema;
 	}
     
