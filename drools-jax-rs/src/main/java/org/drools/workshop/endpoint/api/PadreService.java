@@ -22,19 +22,19 @@ import org.drools.workshop.model.*;
  *
  * @author salaboy
  */
-@Path("padres")
+@Path("alumno")
 public interface PadreService {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/inserta")
-    public Padre insertaPadre(@NotNull Padre padre);
+    public Alumno insertaAlumno(@NotNull Alumno alumno);
 
 
     @GET
     @Produces("application/json")
     @Path("")
-    public List<Padre> getPadres();
+    public List<Alumno> getAlumnos();
 
     @GET
     @Produces("application/json")
@@ -50,4 +50,6 @@ public interface PadreService {
     @Produces("application/json")
     @Path("ancestros")
     public List<Ancestro> getAncestros();
+
+
 }
