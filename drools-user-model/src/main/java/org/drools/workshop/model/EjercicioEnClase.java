@@ -1,4 +1,4 @@
-
+package org.drools.workshop.model;
 public class EjercicioEnClase {
 	private int idEjercicio;
 	private double calificacion;

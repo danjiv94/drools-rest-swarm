@@ -1,3 +1,4 @@
+package org.drools.workshop.model;
 import java.util.Arrays;
 
 public class Materia {
