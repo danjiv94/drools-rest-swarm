@@ -2,6 +2,7 @@ package org.drools.workshop.model;
 public class EjercicioEnClase {
 	private int idEjercicio;
 	private double calificacion;
+	private int parcial;
 	public EjercicioEnClase(){
 		
 	}
@@ -22,9 +23,16 @@ public class EjercicioEnClase {
 	public void setCalificacion(double calificacion) {
 		this.calificacion = calificacion;
 	}
-	public EjercicioEnClase(int idEjercicio, double calificacion) {
+		public int getParcial() {
+		return parcial;
+	}
+	public void setParcial(int parcial) {
+		this.parcial = parcial;
+	}
+	public EjercicioEnClase(int idEjercicio, double calificacion, int parcial) {
 		super();
 		this.idEjercicio = idEjercicio;
 		this.calificacion = calificacion;
+		this.parcial = parcial;
 	}
 }

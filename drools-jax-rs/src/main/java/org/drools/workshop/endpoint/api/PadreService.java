@@ -22,34 +22,74 @@ import org.drools.workshop.model.*;
  *
  * @author salaboy
  */
-@Path("alumno")
+@Path("path")
+
 public interface PadreService {
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    @Path("/inserta")
+    @Path("inserta/alumno")
     public Alumno insertaAlumno(@NotNull Alumno alumno);
 
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("inserta/materia")
+    public Materia insertaMateria(@NotNull Materia materia);
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("inserta/examen")
+    public Examen insertaExamen(@NotNull Examen examen);
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("inserta/tarea")
+    public Tarea insertaTarea(@NotNull Tarea tarea);
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("inserta/ejercicioEnClase")
+    public EjercicioEnClase insertaEjercicioEnClase(@NotNull EjercicioEnClase ejercicioEnClase);
+
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("inserta/desempenio")
+    public Desempenio insertaDesempenio(@NotNull Desempenio desempenio);
 
     @GET
     @Produces("application/json")
-    @Path("")
+    @Path("get/ejercicioEnClase")
+    public List<EjercicioEnClase> getEjerciciosEnClase();
+    
+    @GET
+    @Produces("application/json")
+    @Path("get/desempenio")
+    public List<Desempenio> getDesempenio();  
+
+    @GET
+    @Produces("application/json")
+    @Path("get/materias")
+    public List<Tarea> getTareas();  
+
+    @GET
+    @Produces("application/json")
+    @Path("get/materias")
+    public List<Materia> getMaterias(); 
+
+    @GET
+    @Produces("application/json")
+    @Path("get/alumnos")
+    public List<Examen> getExamenes();   
+
+    @GET
+    @Produces("application/json")
+    @Path("get/alumnos")
     public List<Alumno> getAlumnos();
-
-    @GET
-    @Produces("application/json")
-    @Path("hermanos")
-    public List<Hermano> getHermanos();
-
-    @GET
-    @Produces("application/json")
-    @Path("abuelos")
-    public List<Abuelo> getAbuelos();
-
-    @GET
-    @Produces("application/json")
-    @Path("ancestros")
-    public List<Ancestro> getAncestros();
 
 
 }

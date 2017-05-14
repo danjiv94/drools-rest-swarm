@@ -53,6 +53,83 @@ public class PadreServiceImpl implements PadreService {
         return alumno;
     }
 
+    @Override
+    public Materia insertaMateria(Materia materia) {
+        System.out.println(">> kSession: " + kSession);
+        printKieSessionAllFacts(kSession);
+        System.out.println(">> Materia: " + materia);
+        kSession.insert(materia);
+        int fired = kSession.fireAllRules();
+        System.out.println(">> Fired: " + fired);
+        return materia;
+    }
+
+        @Override
+    public Examen insertaExamen(Examen examen) {
+        System.out.println(">> kSession: " + kSession);
+        printKieSessionAllFacts(kSession);
+        System.out.println(">> Examen: " + examen);
+        kSession.insert(examen);
+        int fired = kSession.fireAllRules();
+        System.out.println(">> Fired: " + fired);
+        return examen;
+    }
+
+
+    public Tarea insertaTarea(Tarea tarea) {
+        System.out.println(">> kSession: " + kSession);
+        printKieSessionAllFacts(kSession);
+        System.out.println(">> Tarea: " + tarea);
+        kSession.insert(tarea);
+        int fired = kSession.fireAllRules();
+        System.out.println(">> Fired: " + fired);
+        return tarea;
+    }
+
+    public Desempenio insertaDesempenio(Desempenio desempenio) {
+        System.out.println(">> kSession: " + kSession);
+        printKieSessionAllFacts(kSession);
+        System.out.println(">> Desempenio: " + desempenio);
+        kSession.insert(desempenio);
+        int fired = kSession.fireAllRules();
+        System.out.println(">> Fired: " + fired);
+        return desempenio;
+    } 
+
+    public EjercicioEnClase insertaEjercicioEnClase(EjercicioEnClase ejercicioEnClase) {
+        System.out.println(">> kSession: " + kSession);
+        printKieSessionAllFacts(kSession);
+        System.out.println(">> Ejercicio En Clase: " + ejercicioEnClase);
+        kSession.insert(ejercicioEnClase);
+        int fired = kSession.fireAllRules();
+        System.out.println(">> Fired: " + fired);
+        return ejercicioEnClase;
+    }    
+    
+
+    @Override
+    public List<Tarea> getTareas() {
+        List<Tarea> tareas = new ArrayList<Tarea>();
+        for (Object o : kSession.getObjects()) {
+            if (o instanceof Tarea) {
+                tareas.add((Tarea) o);
+            }
+        }
+        return tareas;
+    }
+
+
+    @Override
+    public List<Examen> getExamenes() {
+        List<Examen> examenes = new ArrayList<Examen>();
+        for (Object o : kSession.getObjects()) {
+            if (o instanceof Examen) {
+                examenes.add((Examen) o);
+            }
+        }
+        return examenes;
+    }
+
 
     @Override
     public List<Alumno> getAlumnos() {
@@ -66,37 +143,38 @@ public class PadreServiceImpl implements PadreService {
     }
 
     @Override
-    public List<Hermano> getHermanos() {
-        List<Hermano> hermanos = new ArrayList<Hermano>();
+    public List<Materia> getMaterias() {
+        List<Materia> materias = new ArrayList<Materia>();
         for (Object o : kSession.getObjects()) {
-            if (o instanceof Hermano) {
-                hermanos.add((Hermano) o);
+            if (o instanceof Materia) {
+                materias.add((Materia) o);
             }
         }
-        return hermanos;
+        return materias;
     }
 
     @Override
-    public List<Abuelo> getAbuelos() {
-        List<Abuelo> abuelos = new ArrayList<Abuelo>();
+    public List<Desempenio> getDesempenio() {
+        List<Desempenio> desempenios = new ArrayList<Desempenio>();
         for (Object o : kSession.getObjects()) {
-            if (o instanceof Abuelo) {
-                abuelos.add((Abuelo) o);
+            if (o instanceof Desempenio) {
+                desempenios.add((Desempenio) o);
             }
         }
-        return abuelos;
+        return desempenios;
     }
 
     @Override
-    public List<Ancestro> getAncestros() {
-        List<Ancestro> ancestros = new ArrayList<Ancestro>();
+    public List<EjercicioEnClase> getEjerciciosEnClase() {
+        List<EjercicioEnClase> ejerciciosEnClase = new ArrayList<EjercicioEnClase>();
         for (Object o : kSession.getObjects()) {
-            if (o instanceof Ancestro) {
-                ancestros.add((Ancestro) o);
+            if (o instanceof EjercicioEnClase) {
+                ejerciciosEnClase.add((EjercicioEnClase) o);
             }
         }
-        return ancestros;
+        return ejerciciosEnClase;
     }
+
 
     private void printKieSessionAllFacts(KieSession kSession) {
         System.out.println(" >> Start - Printing All Facts in the Kie Session");
