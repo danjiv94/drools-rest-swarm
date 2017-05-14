@@ -1,85 +1,16 @@
 //created on: 26/04/2017
-package green
+package org.drools.workshop;
+import org.drools.workshop.model.*;
 
-declare Alumno
-    nombre : String @key
-    materia : Materia[] @key
-    matricula : String @key
-    carrera: String @key
-end 
-declare Materia
-    nombre : String @key
-    desempenio : Desempenio @key
-end 
 
-declare Desempenio
-    tema : String @key
-    tareas : Tarea @key
-    ejercicioEnClase : EjeEnClase @key
-    examen : Examen @key
-end
-
-declare Tarea
-    id : int @key
-    calificacion : int @key
-    parcial : int @key
-end
-declare EjeEnClase
-    id : int @key
-    calificacion : int @key
-    parcial : int @key
-end
-declare Examen
-    id : int @key
-    calificacion : int@key
-    parcial : int @key
-end
-rule "Carga hechos"
-     when
-     
-     then
-    EjeEnClase eje = new EjeEnClase(1, 90, 1); 
-    insert(eje);
-    eje = new EjeEnClase(2, 95, 1); 
-    insert(eje);  
-    Tarea tar = new Tarea(1, 68, 1);
-    insert(tar);  
-    tar = new Tarea(2, 50, 1);
-    insert(tar);
-    Examen ex = new Examen(1, 70, 1);
-    insert(ex);
-    //
-    EjeEnClase eje2 = new EjeEnClase(1, 100, 1); 
-    insert(eje2);
-    eje2 = new EjeEnClase(2, 95, 1); 
-    insert(eje2);  
-    Tarea tar2 = new Tarea(1, 100, 1);
-    insert(tar2);  
-    tar2 = new Tarea(2,60, 1);
-    insert(tar2);
-    Examen ex2 = new Examen(1, 100, 1);
-    insert(ex2);
-    
-    Desempenio des = new Desempenio("Erlang",tar,eje,ex);
-    insert(des); 
-    Desempenio des2 = new Desempenio("Drools",tar2,eje2,ex2);
-    insert(des2); 
-    Materia[] mat = new Materia[2];
-    mat[0]= new Materia("Erlang", des);
-    mat[1] = new Materia("Drools", des2); 
-    insert(mat);
-    Alumno al = new Alumno("Alan Herrera",mat,"A01338336","ITC");
-    insert(al);
-    
-end
 
 rule "Desempeño tareas"
      when
       //&& $a11.materia.desempenio.tareas.calificacion < 70
     $al1 : Alumno()
-    
+
     //$al2 : Alumno($al1.materia.desempenio.tareas.calificacion <70)
-    
+
      then
      for(int i = 0; i < $al1.getMateria().length; i++){
         if($al1.getMateria()[i].getDesempenio().getTareas().getCalificacion() < 70){
@@ -97,7 +28,7 @@ end
 rule "Desempeño ejercicios"
      when
     $al1 : Alumno()
-    
+
      then
         for(int i = 0; i < $al1.getMateria().length; i ++){
             if($al1.getMateria()[i].getDesempenio().getEjercicioEnClase().getCalificacion() < 70){
@@ -113,20 +44,20 @@ rule "Desempeño ejercicios"
 end
 
 rule "Parcial 1"
-    when 
+    when
     $al : Alumno()
-    
+
     $ex : Alumno($al.materia[0].desempenio.examen.parcial == 1 && $ex.materia == $al.materia)
 
     $totalTar : Double() from accumulate(
          Tarea( parcial == 1, $tar : calificacion ),
          average( $tar ) )
-         
+
     $totalEj : Double() from accumulate(
          EjeEnClase( parcial == 1, $ej : calificacion ),
          average( $ej ) )
     then
-    
+
     for(int i = 0; i < $al.getMateria().length; i++){
         double parcial1 = ($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+($totalEj*.20)+($totalTar*.20);
         if(parcial1 <70){
@@ -143,14 +74,14 @@ rule "Parcial 1"
 end
 
 rule "Parcial 2"
-    when 
+    when
     $al : Alumno()
     $ex : Alumno($al.materia[0].desempenio.examen.parcial == 2)
 
     $totalTar : Double() from accumulate(
          Tarea( parcial ==2, $tar : calificacion ),
          average( $tar ) )
-         
+
     $totalEj : Double() from accumulate(
          EjeEnClase( parcial ==2, $ej : calificacion ),
          average( $ej ) )
@@ -168,4 +99,4 @@ rule "Parcial 2"
         }
         System.out.println($al.getNombre() +" tienes un promedio de "+ (($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+($totalEj*.20)+($totalTar*.20)) + " en el parcial 2");
     }
-end 
+end
