@@ -22,8 +22,8 @@ public class Alumno {
     private String nombre;
     private String matricula;
     private String carrera;
-    private Materia[] materias;
-    private int tiempoEnSistema;
+    private Materia[] materia;
+
     public Alumno(){
 
     }
@@ -46,23 +46,23 @@ public class Alumno {
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
 	}
-      public Materia[] getMaterias() {
-		return materias;
+      public Materia[] getMateria() {
+		return materia;
 	}
-	public void setMaterias(Materia[] materias) {
-		this.materias = materias;
+	public void setMateria(Materia[] materia) {
+		this.materia = materia;
 	}
 	@Override
 	public String toString() {
-		return "Alumno [nombre=" + nombre + ", matricula=" + matricula + ", carrera=" + carrera + ", materias=" + Arrays.toString(materias)
+		return "Alumno [nombre=" + nombre + ", matricula=" + matricula + ", carrera=" + carrera + ", materia=" + Arrays.toString(materia)
 				+ "]";
 	}
-	public Alumno(String nombre, String matricula, String carrera, Materia materia, int tiempoEnSistema) {
+	public Alumno(String nombre, String matricula, String carrera, Materia[] materia) {
 		super();
 		this.nombre = nombre;
 		this.matricula = matricula;
 		this.carrera = carrera;
-		this.materias = materias;
+		this.materia = materia;
 	}
 
 }

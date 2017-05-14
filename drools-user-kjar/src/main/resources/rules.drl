@@ -2,8 +2,6 @@
 package org.drools.workshop;
 import org.drools.workshop.model.*;
 
-
-
 rule "Desempeño tareas"
      when
       //&& $a11.materia.desempenio.tareas.calificacion < 70

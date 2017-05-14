@@ -11,7 +11,7 @@ public class Desempenio {
 
 	}
 
-	public Desempenio(String tema, EjercicioEnClase[] ejercicios, Tarea[] tareas) {
+	public Desempenio(String tema, EjercicioEnClase[] ejercicios, Tarea[] tareas, Examen[] examenes) {
 		super();
 		this.tema = tema;
 		this.ejercicios = ejercicios;

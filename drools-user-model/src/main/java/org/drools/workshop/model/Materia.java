@@ -23,7 +23,7 @@ public class Materia {
 	public String toString() {
 		return "Materia [nombre=" + nombre + "desempenio=" + desempenio +  "]";
 	}
-	public Materia(String nombre) {
+	public Materia(String nombre, Desempenio desempenio) {
 		super();
 		this.nombre = nombre;
 		this.desempenio = desempenio;
