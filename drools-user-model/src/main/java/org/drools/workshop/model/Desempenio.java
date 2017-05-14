@@ -21,7 +21,7 @@ public class Desempenio {
 	@Override
 	public String toString() {
 		return "Desempenio [tema=" + tema + ", ejercicios=" + Arrays.toString(ejercicios) + ", tareas="
-				+ Arrays.toString(tareas)+ ", examenes=" + Arrays.toString(examanes) + "]";
+				+ Arrays.toString(tareas)+ ", examenes=" + Arrays.toString(examenes) + "]";
 	}
 	public String getTema() {
 		return tema;
@@ -44,7 +44,7 @@ public class Desempenio {
 	public Examen[] getExamenes() {
 		return examenes;
 	}
-	public void setExamenes(Examan[] examenes) {
+	public void setExamenes(Examen[] examenes) {
 		this.examenes = examenes;
 	}
 }

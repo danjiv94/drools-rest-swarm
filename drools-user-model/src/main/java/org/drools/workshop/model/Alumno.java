@@ -10,6 +10,7 @@ Diego Granados A01337287
 package org.drools.workshop.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Arrays;
 
 /**
  *
