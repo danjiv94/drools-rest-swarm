@@ -90,7 +90,7 @@ rule "Parcial 2"
             System.out.println("Necesitas repasar más del tema " + $al.getMateria()[i].getDesempenio().getTema());
         }
         else if(parcial2>70 && parcial2<85){
-            System.out.println("Te recomendamos un pequeño repaso de  " + $al.getMateria()[i].getDesempenio().getTema() + " por tu desempenño en el parcial 1 ");
+            System.out.println("Te recomendamos un pequeño repaso de  " + $al.getMateria()[i].getDesempenio().getTema() + " por tu desempenño en el parcial 2 ");
         }
         else{
             System.out.println("Te fue muy bien en el segundo parcial de" + $ex.getMateria()[i].getNombre() + ", sigue así");
