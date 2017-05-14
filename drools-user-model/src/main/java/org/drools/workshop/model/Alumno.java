@@ -21,7 +21,7 @@ public class Alumno {
     private String nombre;
     private String matricula;
     private String carrera;
-    private Materia materia;
+    private Materia[] materia;
     private int tiempoEnSistema;
     public Alumno(){
 
@@ -45,10 +45,10 @@ public class Alumno {
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
 	}
-	public Materia getMateria() {
+      public Materia[] getMateria() {
 		return materia;
 	}
-	public void setMateria(Materia materia) {
+	public void setMateria(Materia[] materia) {
 		this.materia = materia;
 	}
 	public int getTiempoEnSistema() {
