@@ -2,24 +2,26 @@ package org.drools.workshop.model;
 import java.util.Arrays;
 
 public class Desempenio {
-	
+
 	private String tema;
 	private EjercicioEnClase[] ejercicios;
 	private Tarea[] tareas;
+	private Examen[] examenes;
 	public Desempenio(){
-		
+
 	}
-	
+
 	public Desempenio(String tema, EjercicioEnClase[] ejercicios, Tarea[] tareas) {
 		super();
 		this.tema = tema;
 		this.ejercicios = ejercicios;
 		this.tareas = tareas;
+		this.examenes = examenes;
 	}
 	@Override
 	public String toString() {
 		return "Desempenio [tema=" + tema + ", ejercicios=" + Arrays.toString(ejercicios) + ", tareas="
-				+ Arrays.toString(tareas) + "]";
+				+ Arrays.toString(tareas)+ ", examenes=" + Arrays.toString(examanes) + "]";
 	}
 	public String getTema() {
 		return tema;
@@ -38,5 +40,11 @@ public class Desempenio {
 	}
 	public void setTareas(Tarea[] tareas) {
 		this.tareas = tareas;
+	}
+	public Examen[] getExamenes() {
+		return examenes;
+	}
+	public void setExamenes(Examan[] examenes) {
+		this.examenes = examenes;
 	}
 }
