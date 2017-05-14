@@ -1,14 +1,15 @@
 package org.drools.workshop.model;
+
 public class Examen {
-	
+
 	private int id;
 	private int calificacion;
 	private int parcial;
-	
+
 	public Examen(){
-		
+
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -37,5 +38,5 @@ public class Examen {
 		this.calificacion = calificacion;
 		this.parcial = parcial;
 	}
-	
+
 }

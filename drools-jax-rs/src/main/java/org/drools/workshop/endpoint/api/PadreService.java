@@ -84,7 +84,7 @@ public interface PadreService {
     @GET
     @Produces("application/json")
     @Path("get/examenes")
-    public List<Examen> getExamenes();
+    public List<Examen> getExamen();
 
     @GET
     @Produces("application/json")

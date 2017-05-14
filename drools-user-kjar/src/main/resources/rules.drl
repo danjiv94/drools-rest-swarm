@@ -52,7 +52,7 @@ rule "Parcial 1"
          average( $tar ) )
 
     $totalEj : Double() from accumulate(
-         EjeEnClase( parcial == 1, $ej : calificacion ),
+         EjercicioEnClase( parcial == 1, $ej : calificacion ),
          average( $ej ) )
     then
 
@@ -81,7 +81,7 @@ rule "Parcial 2"
          average( $tar ) )
 
     $totalEj : Double() from accumulate(
-         EjeEnClase( parcial ==2, $ej : calificacion ),
+         EjercicioEnClase( parcial ==2, $ej : calificacion ),
          average( $ej ) )
     then
     for(int i = 0; i < $al.getMateria().length; i++){

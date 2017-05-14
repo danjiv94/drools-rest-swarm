@@ -94,7 +94,7 @@ public class PadreServiceImpl implements PadreService {
         int fired = kSession.fireAllRules();
         System.out.println(">> Fired: " + fired);
         return desempenio;
-    } 
+    }
 
     public EjercicioEnClase insertaEjercicioEnClase(EjercicioEnClase ejercicioEnClase) {
         System.out.println(">> kSession: " + kSession);
@@ -104,8 +104,8 @@ public class PadreServiceImpl implements PadreService {
         int fired = kSession.fireAllRules();
         System.out.println(">> Fired: " + fired);
         return ejercicioEnClase;
-    }    
-    
+    }
+
 
     @Override
     public List<Tarea> getTareas() {
@@ -120,7 +120,7 @@ public class PadreServiceImpl implements PadreService {
 
 
     @Override
-    public List<Examen> getExamenes() {
+    public List<Examen> getExamen() {
         List<Examen> examenes = new ArrayList<Examen>();
         for (Object o : kSession.getObjects()) {
             if (o instanceof Examen) {

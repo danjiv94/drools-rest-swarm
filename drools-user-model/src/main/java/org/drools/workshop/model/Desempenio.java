@@ -4,24 +4,24 @@ import java.util.Arrays;
 public class Desempenio {
 
 	private String tema;
-	private EjercicioEnClase[] ejercicios;
-	private Tarea[] tareas;
-	private Examen[] examenes;
+	private EjercicioEnClase ejercicioEnClase;
+	private Tarea tareas;
+	private Examen examen;
 	public Desempenio(){
 
 	}
 
-	public Desempenio(String tema, EjercicioEnClase[] ejercicios, Tarea[] tareas, Examen[] examenes) {
+	public Desempenio(String tema, EjercicioEnClase ejercicioEnClase, Tarea tareas, Examen examen) {
 		super();
 		this.tema = tema;
-		this.ejercicios = ejercicios;
+		this.ejercicioEnClase = ejercicioEnClase;
 		this.tareas = tareas;
-		this.examenes = examenes;
+		this.examen = examen;
 	}
 	@Override
 	public String toString() {
-		return "Desempenio [tema=" + tema + ", ejercicios=" + Arrays.toString(ejercicios) + ", tareas="
-				+ Arrays.toString(tareas)+ ", examenes=" + Arrays.toString(examenes) + "]";
+		return "Desempenio [tema=" + tema + ", ejercicios=" + ejercicioEnClase + ", tareas="
+				+ tareas + ", examenes=" + examen + "]";
 	}
 	public String getTema() {
 		return tema;
@@ -29,22 +29,22 @@ public class Desempenio {
 	public void setTema(String tema) {
 		this.tema = tema;
 	}
-	public EjercicioEnClase[] getEjercicios() {
-		return ejercicios;
+	public EjercicioEnClase getEjercicioEnClase() {
+		return ejercicioEnClase;
 	}
-	public void setEjercicios(EjercicioEnClase[] ejercicios) {
-		this.ejercicios = ejercicios;
+	public void setEjercicioEnClase(EjercicioEnClase ejercicioEnClase) {
+		this.ejercicioEnClase = ejercicioEnClase;
 	}
-	public Tarea[] getTareas() {
+	public Tarea getTareas() {
 		return tareas;
 	}
-	public void setTareas(Tarea[] tareas) {
+	public void setTareas(Tarea tareas) {
 		this.tareas = tareas;
 	}
-	public Examen[] getExamenes() {
-		return examenes;
+	public Examen getExamen() {
+		return examen;
 	}
-	public void setExamenes(Examen[] examenes) {
-		this.examenes = examenes;
+	public void setExamen(Examen examen) {
+		this.examen = examen;
 	}
 }
