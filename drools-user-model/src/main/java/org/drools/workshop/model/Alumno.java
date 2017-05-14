@@ -24,9 +24,9 @@ public class Alumno {
     private Materia materia;
     private int tiempoEnSistema;
     public Alumno(){
-    	
+
     }
-    
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -62,7 +62,7 @@ public class Alumno {
 		return "Alumno [nombre=" + nombre + ", matricula=" + matricula + ", carrera=" + carrera + ", materia=" + materia
 				+ ", tiempoEnSistema=" + tiempoEnSistema + "]";
 	}
-	public Alumno(String nombre, String matricula, String carrera, int tiempoEnSistema) {
+	public Alumno(String nombre, String matricula, String carrera, Materia materia, int tiempoEnSistema) {
 		super();
 		this.nombre = nombre;
 		this.matricula = matricula;
@@ -70,6 +70,5 @@ public class Alumno {
 		this.materia = materia;
 		this.tiempoEnSistema = tiempoEnSistema;
 	}
-    
-}
 
+}

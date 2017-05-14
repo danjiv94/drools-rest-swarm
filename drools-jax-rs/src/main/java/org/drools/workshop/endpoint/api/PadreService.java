@@ -65,26 +65,26 @@ public interface PadreService {
     @Produces("application/json")
     @Path("get/ejercicioEnClase")
     public List<EjercicioEnClase> getEjerciciosEnClase();
-    
+
     @GET
     @Produces("application/json")
     @Path("get/desempenio")
-    public List<Desempenio> getDesempenio();  
+    public List<Desempenio> getDesempenio();
 
     @GET
     @Produces("application/json")
     @Path("get/materias")
-    public List<Tarea> getTareas();  
+    public List<Tarea> getTareas();
 
     @GET
     @Produces("application/json")
     @Path("get/materias")
-    public List<Materia> getMaterias(); 
+    public List<Materia> getMaterias();
 
     @GET
     @Produces("application/json")
-    @Path("get/alumnos")
-    public List<Examen> getExamenes();   
+    @Path("get/examenes")
+    public List<Examen> getExamenes();
 
     @GET
     @Produces("application/json")
