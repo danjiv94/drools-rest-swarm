@@ -143,7 +143,7 @@ public class PadreServiceImpl implements PadreService {
     }
 
     @Override
-    public List<Materia> getMaterias() {
+    public List<Materia> getMateria() {
         List<Materia> materias = new ArrayList<Materia>();
         for (Object o : kSession.getObjects()) {
             if (o instanceof Materia) {

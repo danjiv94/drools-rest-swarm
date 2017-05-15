@@ -2,7 +2,7 @@
 package org.drools.workshop;
 import org.drools.workshop.model.*;
 
-rule "Desempeño tareas"
+rule "Desempenio tareas"
      when
       //&& $a11.materia.desempenio.tareas.calificacion < 70
     $al1 : Alumno()
@@ -10,29 +10,37 @@ rule "Desempeño tareas"
     //$al2 : Alumno($al1.materia.desempenio.tareas.calificacion <70)
 
      then
+     double tars = 0;
      for(int i = 0; i < $al1.getMateria().length; i++){
-        if($al1.getMateria()[i].getDesempenio().getTareas().getCalificacion() < 70){
+     for(int k=0; k<$al1.getMateria()[i].getDesempenio().getTareas().length; k++){
+         tars+=$al1.getMateria()[i].getDesempenio().getTareas()[k].getCalificacion();
+     }
+        if((tars/$al1.getMateria()[i].getDesempenio().getTareas().length) < 70){
             System.out.println($al1.getNombre()+ " saliste muy bajo en tareas , te recomendamos que leas contenidos para principiantes sobre "+ $al1.getMateria()[i].getDesempenio().getTema());
         }else{
-            if($al1.getMateria()[i].getDesempenio().getTareas().getCalificacion() > 70 && $al1.getMateria()[i].getDesempenio().getTareas().getCalificacion() < 85 ){
+            if((tars/$al1.getMateria()[i].getDesempenio().getTareas().length) > 70 && (tars/$al1.getMateria()[i].getDesempenio().getTareas().length) < 85 ){
             System.out.println($al1.getNombre()+ " te recomendamos que leas contenidos intermedios sobre "+ $al1.getMateria()[i].getDesempenio().getTema());
             }else{
                 System.out.println($al1.getNombre()+ " vas muy bien en tareas, si quieres aprender más puedes leer contenidos avanzados sobre "+ $al1.getMateria()[i].getDesempenio().getTema());
             }
          }
+          insert(new Materia($al1.getMateria()[i].getNombre(),$al1.getMateria()[i].getDesempenio()));
     }
 end
-
-rule "Desempeño ejercicios"
+rule "Desempenio ejercicios"
      when
     $al1 : Alumno()
 
      then
+     double ejs = 0;
         for(int i = 0; i < $al1.getMateria().length; i ++){
-            if($al1.getMateria()[i].getDesempenio().getEjercicioEnClase().getCalificacion() < 70){
+            for(int j=0; j<$al1.getMateria()[i].getDesempenio().getEjercicioEnClase().length; j++){
+                ejs+=$al1.getMateria()[i].getDesempenio().getEjercicioEnClase()[j].getCalificacion();
+            }
+            if((ejs/$al1.getMateria()[i].getDesempenio().getEjercicioEnClase().length) < 70){
                 System.out.println($al1.getNombre()+ " saliste muy bajo en los ejercicios, te recomendamos que hagas ejercicios para principiantes sobre "+ $al1.getMateria()[i].getDesempenio().getTema());
             }else{
-                if($al1.getMateria()[i].getDesempenio().getEjercicioEnClase().getCalificacion() > 70 && $al1.getMateria()[i].getDesempenio().getEjercicioEnClase().getCalificacion() < 85 ){
+                if((ejs/$al1.getMateria()[i].getDesempenio().getEjercicioEnClase().length) > 70 && (ejs/$al1.getMateria()[i].getDesempenio().getEjercicioEnClase().length) < 85 ){
                 System.out.println($al1.getNombre()+ " te recomendamos hacer ejercicios intermedios sobre "+ $al1.getMateria()[i].getDesempenio().getTema());
                 }else{
                     System.out.println($al1.getNombre()+ " vas muy bien en ejericios, si quieres aprender más puedes hacer ejercicios avanzados sobre "+ $al1.getMateria()[i].getDesempenio().getTema());
@@ -47,17 +55,17 @@ rule "Parcial 1"
 
     $ex : Alumno($al.materia[0].desempenio.examen.parcial == 1 && $ex.materia == $al.materia)
 
-    $totalTar : Double() from accumulate(
-         Tarea( parcial == 1, $tar : calificacion ),
-         average( $tar ) )
-
-    $totalEj : Double() from accumulate(
-         EjercicioEnClase( parcial == 1, $ej : calificacion ),
-         average( $ej ) )
     then
-
+    double ejs = 0;
+    double tars = 0;
     for(int i = 0; i < $al.getMateria().length; i++){
-        double parcial1 = ($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+($totalEj*.20)+($totalTar*.20);
+        for(int j=0; j<$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length; j++){
+            ejs+=$ex.getMateria()[i].getDesempenio().getEjercicioEnClase()[j].getCalificacion();
+        }
+        for(int k=0; k<$al.getMateria()[i].getDesempenio().getTareas().length; k++){
+            tars+=$ex.getMateria()[i].getDesempenio().getTareas()[k].getCalificacion();
+        }
+        double parcial1 = ($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+((ejs/$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length)*.20)+((tars/$al.getMateria()[i].getDesempenio().getTareas().length)*.20);
         if(parcial1 <70){
             System.out.println("Necesitas repasar más del tema " + $al.getMateria()[i].getDesempenio().getTema()+ " para obtener una mejor calificación parcial");
         }
@@ -67,7 +75,7 @@ rule "Parcial 1"
         else{
             System.out.println("Te fue muy bien en el primer parcial de " + $ex.getMateria()[i].getNombre() + ", sigue así");
         }
-        System.out.println($al.getNombre() +" tu calificacion del parcial 1 es de "+ (($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+($totalEj*.20)+($totalTar*.20))+" en la materia "+ $ex.getMateria()[i].getDesempenio().getTema());
+        System.out.println($al.getNombre() +" tu calificacion del parcial 1 es de "+ (($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+((ejs/$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length)*.20)+((tars/$al.getMateria()[i].getDesempenio().getTareas().length)*.20))+" en la materia "+ $ex.getMateria()[i].getNombre());
     }
 end
 
@@ -76,16 +84,18 @@ rule "Parcial 2"
     $al : Alumno()
     $ex : Alumno($al.materia[0].desempenio.examen.parcial == 2)
 
-    $totalTar : Double() from accumulate(
-         Tarea( parcial ==2, $tar : calificacion ),
-         average( $tar ) )
 
-    $totalEj : Double() from accumulate(
-         EjercicioEnClase( parcial ==2, $ej : calificacion ),
-         average( $ej ) )
     then
+    double ejs = 0;
+    double tars = 0;
     for(int i = 0; i < $al.getMateria().length; i++){
-        double parcial2 = ($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+($totalEj*.20)+($totalTar*.20);
+        for(int j=0; j<$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length; j++){
+            ejs+=$ex.getMateria()[i].getDesempenio().getEjercicioEnClase()[j].getCalificacion();
+        }
+        for(int k=0; k<$al.getMateria()[i].getDesempenio().getTareas().length; k++){
+            tars+=$ex.getMateria()[i].getDesempenio().getTareas()[k].getCalificacion();
+        }
+        double parcial2 = ($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+((ejs/$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length)*.20)+((tars/$al.getMateria()[i].getDesempenio().getTareas().length)*.20);
         if(parcial2<70){
             System.out.println("Necesitas repasar más del tema " + $al.getMateria()[i].getDesempenio().getTema());
         }
@@ -95,6 +105,6 @@ rule "Parcial 2"
         else{
             System.out.println("Te fue muy bien en el segundo parcial de" + $ex.getMateria()[i].getNombre() + ", sigue así");
         }
-        System.out.println($al.getNombre() +" tienes un promedio de "+ (($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+($totalEj*.20)+($totalTar*.20)) + " en el parcial 2");
+        System.out.println($al.getNombre() +" tienes un promedio de "+ (($ex.getMateria()[i].getDesempenio().getExamen().getCalificacion()*.60)+((ejs/$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length)*.20)+((tars/$al.getMateria()[i].getDesempenio().getTareas().length)*.20)) + " en el parcial 2");
     }
 end
