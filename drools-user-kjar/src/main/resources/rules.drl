@@ -56,9 +56,9 @@ rule "Parcial 1"
     $ex : Alumno($al.materia[0].desempenio.examen.parcial == 1 && $ex.materia == $al.materia)
 
     then
-    double ejs = 0;
-    double tars = 0;
     for(int i = 0; i < $al.getMateria().length; i++){
+        double ejs = 0;
+        double tars = 0;
         for(int j=0; j<$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length; j++){
             ejs+=$ex.getMateria()[i].getDesempenio().getEjercicioEnClase()[j].getCalificacion();
         }
@@ -86,9 +86,10 @@ rule "Parcial 2"
 
 
     then
-    double ejs = 0;
-    double tars = 0;
+
     for(int i = 0; i < $al.getMateria().length; i++){
+        double ejs = 0;
+        double tars = 0;
         for(int j=0; j<$al.getMateria()[i].getDesempenio().getEjercicioEnClase().length; j++){
             ejs+=$ex.getMateria()[i].getDesempenio().getEjercicioEnClase()[j].getCalificacion();
         }
