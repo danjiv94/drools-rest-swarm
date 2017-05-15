@@ -73,13 +73,13 @@ public interface PadreService {
 
     @GET
     @Produces("application/json")
-    @Path("get/materias")
+    @Path("get/tareas")
     public List<Tarea> getTareas();
 
     @GET
     @Produces("application/json")
     @Path("get/materias")
-    public List<Materia> getMaterias();
+    public List<Materia> getMateria();
 
     @GET
     @Produces("application/json")
